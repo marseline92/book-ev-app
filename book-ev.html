@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БукОцінка - Сервіс оцінки вживаних книг</title>
+    <style>
+        /* Базові налаштування */
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --text-color: #333;
+            --bg-color: #f8fafc;
+            --white: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+        
+        /* Шапка сайту */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Головна секція (Hero) */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+        }
+        .hero h1 {
+            font-size: 36px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Контейнер для контенту */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Секція з правилами */
+        .rules-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .rules-section h2 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+        .rules-section ul {
+            padding-left: 20px;
+        }
+        .rules-section li {
+            margin-bottom: 10px;
+        }
+
+        /* Калькулятор */
+        .calculator {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #10b981;
+            border-radius: 6px;
+            display: none;
+        }
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #10b981;
+            margin: 10px 0;
+        }
+
+        /* Підвал сайту */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e293b;
+            color: #94a3b8;
+            margin-top: 40px;
+        }
+
+        /* Адаптивність для телефонів */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav {
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">📚 БукОцінка</a>
+        <nav>
+            <a href="#about">Про сервіс</a>
+            <a href="#calc">Калькулятор</a>
+            <a href="#contact">Контакти</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Продаєте книги з власних полиць?</h1>
+        <p>Дізнайтеся справедливу ринкову вартість вашої вживаної книги за лічені секунди за допомогою нашого алгоритму, заснованого на негласних правилах книжкового ринку.</p>
+    </section>
+
+    <div class="container">
+        <!-- Секція з текстовим описом (ваші правила) -->
+        <section id="about" class="rules-section">
+            <h2>Як це працює?</h2>
+            <p>Оцінка б/в книги — це завжди компроміс. Книги втрачають частину своєї ціни, як тільки куплені вами, адже ви не магазин.</p>
+            <ul>
+                <li><strong>Мінус 25%:</strong> Стандартна "плата" за зміну власника (відсутність чека, гарантій, можливості повернення).</li>
+                <li><strong>Мінус 15%:</strong> Додаткова знижка за фізичні пошкодження (побиті кутики, потертості).</li>
+                <li><strong>Дефіцитні видання:</strong> Якщо книга популярна, можна ставити вищу ціну, але будьте готові до торгу.</li>
+                <li><strong>Швидкий продаж:</strong> Щоб продати миттєво, ставте близько 45-50% від ціни нової книги.</li>
+            </ul>
+        </section>
+
+        <!-- Секція калькулятора -->
+        <section id="calc" class="calculator">
+            <h2>Розрахунок вартості</h2>
+            
+            <div class="form-group">
+                <label for="minPrice">Найнижча ціна нової книги (грн):</label>
+                <input type="number" id="minPrice" placeholder="Наприклад: 250" min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="condition">Оберіть стан примірника:</label>
+                <select id="condition">
+                    <option value="ideal">Прочитана 1 раз (ідеальний стан)</option>
+                    <option value="flawed">Хороший, але з нюансами (потертості)</option>
+                    <option value="quick">Потрібен дуже швидкий продаж</option>
+                    <option value="rare">Дефіцитний наклад / Хіт продажів</option>
+                </select>
+            </div>
+
+            <button onclick="calculatePrice()">Оцінити книгу</button>
+
+            <div id="resultBox" class="result-box">
+                <div>Рекомендована ціна для продажу:</div>
+                <div class="price" id="finalPrice">0 грн</div>
+                <div id="tipsContent" style="font-size: 14px; color: #475569;"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <p>© 2026 БукОцінка. Створено для активних читачів та перекупників.</p>
+    </footer>
+
+    <script>
+        function calculatePrice() {
+            const minPrice = parseFloat(document.getElementById('minPrice').value);
+            const condition = document.getElementById('condition').value;
+            const resultBox = document.getElementById('resultBox');
+            const finalPriceEl = document.getElementById('finalPrice');
+            const tipsContent = document.getElementById('tipsContent');
+
+            if (isNaN(minPrice) || minPrice <= 0) {
+                alert("Будь ласка, введіть правильну ціну нової книги.");
+                return;
+            }
+
+            let calculatedPrice = 0;
+            let tipText = "";
+
+            switch (condition) {
+                case 'ideal':
+                    calculatedPrice = minPrice * 0.75;
+                    tipText = "Ціна знижена на 25% від ринкової вартості нової книги.";
+                    break;
+                case 'flawed':
+                    calculatedPrice = minPrice * 0.60;
+                    tipText = "Віднято 25% за вживаність + 15% за дефекти. Не забудьте додати фото пошкоджень в оголошення!";
+                    break;
+                case 'quick':
+                    calculatedPrice = minPrice * 0.45;
+                    tipText = "Екстремальне зниження ціни для гарантовано швидкого продажу.";
+                    break;
+                case 'rare':
+                    calculatedPrice = minPrice * 0.85; 
+                    let lowerBound = minPrice * 0.75;
+                    tipText = `Рекомендуємо діапазон від ${Math.round(lowerBound)} до ${Math.round(calculatedPrice)} грн. Будьте готові до торгу.`;
+                    break;
+            }
+
+            finalPriceEl.innerHTML = Math.round(calculatedPrice) + " грн";
+            tipsContent.innerHTML = `<strong>Підказка:</strong> ${tipText}`;
+            resultBox.style.display = "block";
+        }
+    </script>
+</body>
+</html>
